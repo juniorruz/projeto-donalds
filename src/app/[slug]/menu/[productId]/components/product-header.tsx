@@ -19,9 +19,9 @@ const ProductHeader = ({ product }: ProductHeaderProps) => {
   }
   return ( <div className="relative w-full h-[300px]">
     <Button
-         variant={"secondary"}
-         size={"icon"}
-         className="absolute left-4 top-4 z-50 rounded-full"
+       variant={"secondary"}
+       size={"icon"}
+       className="absolute left-4 top-4 z-50 rounded-full"
       onClick={handlerBackClick}
        >
          <ChevronLeftIcon />
@@ -37,5 +37,6 @@ const ProductHeader = ({ product }: ProductHeaderProps) => {
    <Image src={product.imageUrl} alt={product.name} fill className="object-contain " />
   </div> );
 }
+
 
 export default ProductHeader
