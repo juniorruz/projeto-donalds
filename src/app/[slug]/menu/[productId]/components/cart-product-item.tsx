@@ -1,16 +1,21 @@
 import { ChevronLeftIcon, ChevronRightIcon, TrashIcon } from "lucide-react";
 import Image from "next/image";
+import { useContext } from "react";
 
 import { Button } from "@/components/ui/button";
 import { formatCurrency } from "@/helpers/format-currency";
 
-import { CartProduct } from "../../contexts/cart";
+import { CartContext, CartProduct } from "../../contexts/cart";
 
 interface CartItemProps {
   product: CartProduct;
 }
 
 const CartProductItem = ({ product }: CartItemProps) => {
+  const { decreaseProductQuantity } = useContext(CartContext);
+  const handleDecreaseQuantity = () => {
+    decreaseProductQuantity(product.id);
+  };
   return (
     <div className="flex items-center justify-between">
       <div className="flex items-center gap-3">
@@ -25,7 +30,11 @@ const CartProductItem = ({ product }: CartItemProps) => {
             {formatCurrency(product.price)}
           </p>
           <div className="flex items-center gap-1 text-center">
-            <Button className="h-8 w-8 rounded-xl" variant={"outline"}>
+            <Button
+              className="h-8 w-8 rounded-xl"
+              variant={"outline"}
+              onClick={handleDecreaseQuantity}
+            >
               <ChevronLeftIcon />
             </Button>
             <p className="w-7 text-xs">{product.quantity}</p>
